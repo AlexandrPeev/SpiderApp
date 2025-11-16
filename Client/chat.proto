@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package chat;
+
+// Message types
+enum MessageType {
+    LOGIN = 0;
+    LOGIN_RESPONSE = 1;
+    CHAT_MESSAGE = 2;
+    CHAT_BROADCAST = 3;
+    KICK_CLIENT = 4;
+    KICK_NOTIFICATION = 5;
+    ERROR = 6;
+}
+
+// Main message wrapper
+message ChatMessage {
+    MessageType type = 1;
+    
+    // Login
+    string username = 2;
+    bool login_success = 3;
+    string error_message = 4;
+    
+    // Chat messages
+    string message_text = 5;
+    string sender_username = 6;
+    int64 timestamp = 7;
+    
+    // Kick
+    string target_username = 9;
+    bool is_admin = 10;
+}
+
